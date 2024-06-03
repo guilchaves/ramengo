@@ -5,11 +5,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "tb_broth")
-public class Broth {
+public class Broth implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = -8866138698120713021L;
 
     @Id
     private String id;
