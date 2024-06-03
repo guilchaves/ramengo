@@ -1,4 +1,3 @@
--- Drop the table if it already exists
 DROP TABLE IF EXISTS tb_protein;
 DROP TABLE IF EXISTS tb_broth;
 
