@@ -12,7 +12,7 @@ import static org.springframework.http.HttpMethod.POST;
 
 @RestController
 @RequestMapping("/orders")
-public class OrderIdController {
+public class OrderController {
 
     @Autowired
     RestTemplateConfig restTemplateConfig;
@@ -30,7 +30,6 @@ public class OrderIdController {
 
         HttpEntity<OrderId> entity = new HttpEntity<OrderId>(headers);
         return restTemplateConfig.restTemplate().exchange(url, POST, entity, OrderId.class).getBody();
-
     }
 
 }
