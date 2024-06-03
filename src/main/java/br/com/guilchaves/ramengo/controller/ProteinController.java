@@ -22,5 +22,4 @@ public class ProteinController {
         List<ProteinDTO> list = service.findAll();
         return ResponseEntity.ok(list);
     }
-
 }

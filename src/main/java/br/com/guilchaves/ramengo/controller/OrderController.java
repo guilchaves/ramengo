@@ -1,7 +1,13 @@
 package br.com.guilchaves.ramengo.controller;
 
 import br.com.guilchaves.ramengo.config.RestTemplateConfig;
+import br.com.guilchaves.ramengo.dto.BrothDTO;
+import br.com.guilchaves.ramengo.dto.OrderRequestDTO;
+import br.com.guilchaves.ramengo.dto.OrderResponseDTO;
+import br.com.guilchaves.ramengo.dto.ProteinDTO;
 import br.com.guilchaves.ramengo.entities.OrderId;
+import br.com.guilchaves.ramengo.service.BrothService;
+import br.com.guilchaves.ramengo.service.ProteinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -15,21 +21,35 @@ import static org.springframework.http.HttpMethod.POST;
 public class OrderController {
 
     @Autowired
+    private BrothService brothService;
+
+    @Autowired
+    private ProteinService proteinService;
+
+    @Autowired
     RestTemplateConfig restTemplateConfig;
 
     @Value("${orderid.api.base-url}")
     private String orderidApiBaseUrl;
 
-    @PostMapping()
+    @PostMapping
     @ResponseBody
-    public OrderId callApiGetOrderId(){
+    public OrderResponseDTO placeOrder(@RequestBody OrderRequestDTO orderRequestDTO){
         String url = orderidApiBaseUrl;
-
         HttpHeaders headers = new HttpHeaders();
         headers.set("x-api-key", "ZtVdh8XQ2U8pWI2gmZ7f796Vh8GllXoN7mr0djNf");
-
         HttpEntity<OrderId> entity = new HttpEntity<OrderId>(headers);
-        return restTemplateConfig.restTemplate().exchange(url, POST, entity, OrderId.class).getBody();
-    }
+        OrderId orderId = restTemplateConfig.restTemplate().exchange(url, POST, entity, OrderId.class).getBody();
 
+        if (orderId == null){
+            throw new RuntimeException("Failed to fetch order ID");
+        }
+
+        BrothDTO broth = brothService.getBrothById(orderRequestDTO.getBrothId());
+        ProteinDTO protein = proteinService.getProteinById(orderRequestDTO.getProteinId());
+
+        String description = broth.getName() + " and " + protein.getName() + " Ramen";
+
+        return new OrderResponseDTO(orderId.getOrderId(), description, "https://tech.redventures.com.br/icons/ramen/ramen" + protein.getName() + ".png");
+    }
 }
