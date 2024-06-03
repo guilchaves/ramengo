@@ -14,7 +14,7 @@
 	<name>ramengo</name>
 	<description>Plataforma para que o usuário possa montar um pedido de ramen, escolhendo os tipos de caldos e proteínas do prato.</description>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
