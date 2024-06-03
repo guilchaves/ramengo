@@ -1,15 +1,12 @@
 package br.com.guilchaves.ramengo.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Entity
+@Embeddable
 @Table(name = "tb_order_request")
 public class OrderRequest implements Serializable {
 
