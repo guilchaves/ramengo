@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Embeddable
 @Table(name = "tb_order_request")
-public class OrderRequest implements Serializable {
+public class Order implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 4528359399475036453L;
@@ -41,7 +41,7 @@ public class OrderRequest implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        OrderRequest that = (OrderRequest) o;
+        Order that = (Order) o;
         return Objects.equals(broth, that.broth) && Objects.equals(protein, that.protein);
     }
 
