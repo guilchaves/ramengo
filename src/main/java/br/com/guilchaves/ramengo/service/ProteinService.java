@@ -1,5 +1,6 @@
 package br.com.guilchaves.ramengo.service;
 
+import br.com.guilchaves.ramengo.dto.ProteinDTO;
 import br.com.guilchaves.ramengo.entities.Protein;
 import br.com.guilchaves.ramengo.repository.ProteinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,9 @@ public class ProteinService {
     private ProteinRepository repository;
 
     @Transactional(readOnly = true)
-    public List<Protein> findAll(){
-        return repository.findAll();
+    public List<ProteinDTO> findAll(){
+        List<Protein> list = repository.findAll();
+        return list.stream().map(ProteinDTO::new).toList();
     }
 
 }
