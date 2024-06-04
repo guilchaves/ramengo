@@ -38,11 +38,12 @@ git clone https://github.com/guilchaves/ramengo.git
 
 3. **Baixe as dependências do Maven:**</br>
    Aguarde até que o IntelliJ ou STS baixe automaticamente as dependências do Maven. Isso pode levar algum tempo, dependendo da conexão com a internet.</br></br>
-4. Altere o perfil ativo da aplicação para `spring.profiles.active=prod` em `resources/application.properties`</br><br>
+4. **Altere o perfil da aplicação para testes locais**</br>
+    Altere o perfil ativo da aplicação para `spring.profiles.active=prod` em `resources/application.properties`</br><br>
 5. **Execute o projeto:**</br>
    No projeto, navegue até o arquivo `src/main/java/br/com/guilchaves/ramengo/RamengoApplication.java`. Este arquivo contém
    a classe principal da aplicação Spring Boot.</br>
-- _IntelliJ IDEA_: Clique com o botão direito do mouse no arquivo DscatalogApplication.java e escolha "Run DscatalogApplication".
+- _IntelliJ IDEA_: Clique com o botão direito do mouse no arquivo RamengoApplication.java e escolha "Run RamengoApplication".
 - _Spring Tools Suite_: Clique com o botão direito do mouse no projeto no navegador de projetos e escolha "Run As" > "Spring Boot App".
 
 6. **Verifique a Execução:**</br>
